@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Simple Photo Upload - No JavaScript</title>
+        <style>
+            .container {
+                max-width: 600px;
+                margin: 50px auto;
+                padding: 20px;
+            }
+            .photo-preview {
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                border: 3px solid #ddd;
+                margin: 20px auto;
+            }
+            .photo-preview img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
+            }
+            .default-avatar {
+                width: 100%;
+                height: 100%;
+                background: #007bff;
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 3rem;
+                border-radius: 50%;
+            }
+            .form-group {
+                margin: 15px 0;
+            }
+            .btn {
+                padding: 10px 20px;
+                background: #007bff;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            .btn-danger {
+                background: #dc3545;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Upload Foto Profil - Tanpa JavaScript</h1>
+
+            <form method="POST" enctype="multipart/form-data" action="#">
+                <div class="photo-preview">
+                    <div class="default-avatar">D</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Upload Foto Baru:</label>
+                    <input
+                        type="file"
+                        name="profile_photo"
+                        accept="image/*"
+                        class="form-control"
+                    />
+                    <small>JPG, PNG, GIF, WEBP (Max: 2MB)</small>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="remove_photo" value="1" />
+                        Hapus foto saat ini
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label>Nama:</label>
+                    <input
+                        type="text"
+                        name="name"
+                        value="Deddy Kurniawan"
+                        class="form-control"
+                    />
+                </div>
+
+                <button type="submit" class="btn">Simpan Perubahan</button>
+            </form>
+
+            <div
+                style="
+                    margin-top: 30px;
+                    padding: 20px;
+                    background: #f8f9fa;
+                    border-radius: 5px;
+                "
+            >
+                <h3>Cara Kerja (Tanpa JavaScript):</h3>
+                <ol>
+                    <li>User pilih foto dengan file input</li>
+                    <li>User klik "Simpan Perubahan"</li>
+                    <li>Form di-submit ke server</li>
+                    <li>Server proses upload foto</li>
+                    <li>Server redirect kembali dengan foto baru</li>
+                </ol>
+                <p>
+                    <strong>Keuntungan:</strong> Tidak ada masalah
+                    kompatibilitas, bekerja di semua browser, lebih stabil
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

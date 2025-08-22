@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test Delete File Function</title>
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
+    </head>
+    <body>
+        <h1>Test Delete File Function</h1>
+        <button onclick="testDeleteFile(19)">Test Delete File</button>
+
+        <script>
+            async function testDeleteFile(pbId) {
+                console.log("Testing deleteFile function with PB ID:", pbId);
+
+                if (!confirm("Test delete file?")) {
+                    return;
+                }
+
+                try {
+                    const response = await fetch(`/pb/${pbId}/delete-file`, {
+                        method: "DELETE",
+                        headers: {
+                            "X-CSRF-TOKEN": document
+                                .querySelector('meta[name="csrf-token"]')
+                                ?.getAttribute("content"),
+                            "Content-Type": "application/json",
+                            Accept: "application/json",
+                        },
+                    });
+
+                    console.log("Response status:", response.status);
+                    const result = await response.json();
+                    console.log("Response data:", result);
+
+                    if (result.success) {
+                        alert("File berhasil dihapus!");
+                    } else {
+                        alert(result.message || "Gagal menghapus file");
+                    }
+                } catch (error) {
+                    console.error("Error deleting file:", error);
+                    alert("Terjadi kesalahan saat menghapus file");
+                }
+            }
+        </script>
+    </body>
+</html>

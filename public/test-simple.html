@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Test Elements</title>
+    </head>
+    <body>
+        <h1>Test Profile Elements</h1>
+
+        <div
+            id="imagePreview"
+            style="border: 2px solid red; width: 150px; height: 150px"
+        >
+            <div
+                style="
+                    background: blue;
+                    color: white;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                "
+            >
+                D
+            </div>
+        </div>
+
+        <input
+            type="file"
+            id="profile_photo"
+            accept="image/*"
+            onchange="testPreview(this)"
+        />
+
+        <script>
+            function testPreview(input) {
+                console.log("Test preview called");
+
+                if (!input.files || input.files.length === 0) {
+                    console.log("No file");
+                    return;
+                }
+
+                const file = input.files[0];
+                const previewDiv = document.getElementById("imagePreview");
+
+                console.log("File:", file.name);
+                console.log("Preview div:", previewDiv);
+
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    console.log("Success!");
+                    previewDiv.innerHTML =
+                        '<img src="' +
+                        e.target.result +
+                        '" style="width:100%;height:100%;object-fit:cover;">';
+                };
+                reader.readAsDataURL(file);
+            }
+        </script>
+    </body>
+</html>
